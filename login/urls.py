@@ -3,5 +3,6 @@ from django.urls.resolvers import URLPattern
 from . import views
 
 urlpatterns = [
-        path('', views.login)
-] 
+                  path('', views.login),
+                  path('login/verify_login', views.verify_login)
+              ] 

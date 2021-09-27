@@ -10,8 +10,21 @@ $(document).ready (function(){
     $(document).on('submit', '#login_form', function(e){
         e.preventDefault();
 
-        alert("Hello world");
+        var form_input = $(this).serialize();
 
+        $.ajax({
+            url: 'login/verify_login',
+            type: 'GET',
+            data : form_input,
+            success : function (output){
+                if (output['result'] == 'success'){
+                    alert('Success');
+                }
+                else{
+                    alert("Error")
+                }
+            }
+        })
     });
 
 
