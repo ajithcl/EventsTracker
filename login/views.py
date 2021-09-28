@@ -9,6 +9,11 @@ def login(request):
     return render(request, 'login.html')
 
 
+def logout (request):
+    request.session['logged_user'] = ''
+    return render(request, 'login.html')
+
+
 def verify_login(request):
     # Get the input username and password 
     login_name = request.GET.get ('login_name','')
@@ -20,5 +25,6 @@ def verify_login(request):
     if user is None:
         return JsonResponse ({'result':'error'})
     else:
+        # Storing the logged user name in the request session
         request.session['logged_user']=user.get_username()
         return JsonResponse({'result':'success'})

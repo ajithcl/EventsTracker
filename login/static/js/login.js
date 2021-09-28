@@ -17,11 +17,11 @@ $(document).ready (function(){
             type: 'GET',
             data : form_input,
             success : function (output){
-                if (output['result'] == 'success'){
-                    alert('Success');
+                if (output['result'] == 'error'){
+                    alert('Login failed');
                 }
                 else{
-                    alert("Error")
+                    window.location.href="/entities";
                 }
             }
         })
