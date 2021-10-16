@@ -3,17 +3,22 @@
 {% block content %}
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                {{form}}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <button type="button" class="btn btn-outline-primary" id="btn_create_entity">Create new entity</button>
             </div>
 
-            <div class="col-md-6 p-3 mb-2 bg-light text-dark border border-primary">
+            <div class="col-md-6 p-3 mb-2 bg-light text-dark border border-primary" id="entity_form_div" hidden>
                 <br>
                 <form id="entity_form">
                     <div class="mb-3 row">
-                        <label for="name" class="col-sm-2 col-form-label">EventName</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control form-control-sm" id="name" name="event_name">
+                        <label for="name" class="col-sm-3 col-form-label">Entity Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-sm" id="name" name="entity_name">
                         </div>
                     </div>
                     <div class="form-floating mb-3">
@@ -22,11 +27,12 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="image" class="col-sm-2 col-form-label">Image</label>
-                        <div class="col-sm-10">
-                            <input class="form-control form-control-sm" id="image" type="file" name="image_path">
+                        <label for="image_path" class="col-sm-3 col-form-label">Image</label>
+                        <div class="col-sm-9">
+                            <input class="form-control form-control-sm" id="image_path" type="file" name="image_path">
                         </div>
                     </div>
+
                     <div class="mb-3 row">
                         <div class="col-sm-5"></div>
                         <div class="col-sm-7">
@@ -35,12 +41,18 @@
                         </div>
                     </div>
                 </form>
+                <div class="alert alert-success" role="alert" id="entity_input_alert" hidden>
+                    <span id="entity_input_alert_message">
+                        Record Created!
+                    </span>
+                </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <h1 class="display-6">Entity lists</h1>
+                <span id="entity_cards_span"></span>
             </div>
         </div>
     </div>
