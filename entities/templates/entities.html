@@ -1,5 +1,5 @@
 {% extends 'bootstrap_theme.html' %}
-
+{% load static %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -48,16 +48,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="display-6">Entity lists</h1>
-                <span id="entity_cards_span"></span>
-            </div>
+        <div class="row" id="entity_cards_span">
+            <!-- Cards will be dynamically load through loadEntities function from entities.js -->
         </div>
-    </div>
 
-    {% load static %}
+
     <script src="{% static '/js/entities.js' %}" type="text/javascript"></script>
 
 {% endblock %}

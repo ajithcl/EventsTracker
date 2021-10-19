@@ -17,11 +17,12 @@ def handle_uploaded_file(file_object):
         upload_file_name = upload_file_name.replace(" ", "")
         upload_file_name = upload_file_name + "." + file_extension
         try:
-            with open('entities/static/upload/entities/' + upload_file_name, 'wb+') as destination:
+            with open('static/images/entities/' + upload_file_name, 'wb+') as destination:
                 for chunk in file_object.chunks():
                     destination.write(chunk)
             return upload_file_name
-        except:
+        except Exception as ex:
+            # print (ex.__class__.__name__, upload_file_name)
             return None
     else:
         return None

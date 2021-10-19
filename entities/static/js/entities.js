@@ -7,6 +7,7 @@
 $(document).ready(function () {
 
     // Load Entity details
+
     loadEntities()
 
     // Create new entity form submit
@@ -70,22 +71,21 @@ $(document).ready(function () {
             if (data.result == 'success'){
                 entity_list = data.data;
                 entity_list = JSON.parse(entity_list)
-                console.log(entity_list.length)
                 entity_cards_html='';
                 if (entity_list.length > 0){
                     entity_list.forEach(function(entity_value){
                         entity_field = entity_value['fields']
                         entity_cards_html+=`
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="..." alt=${entity_field['ImageFileName']}>
+                            <div class="card bg-light mb-2" data-rowid=${entity_field['EntityName']} style="max-width: 18rem;">
+                                <img class="card-img-top" src="../static/images/entities/${entity_field['ImageFileName']}" >
                                 <div class="card-body">
                                     <h5 class="card-title">${entity_field['EntityName']}</h5>
                                     <p class="card-text">${entity_field['Comments']}</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
                                             `;
                                         })
+
                     entity_cards_span.innerHTML = entity_cards_html
                 }
             }
