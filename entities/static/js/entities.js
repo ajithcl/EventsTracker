@@ -81,6 +81,7 @@ $(document).ready(function () {
                                 <div class="card-body">
                                     <h5 class="card-title">${entity_field['EntityName']}</h5>
                                     <p class="card-text">${entity_field['Comments']}</p>
+                                    <a href="#" class="btn btn-outline-success">View</a>
                                 </div>
                             </div>
                                             `;
