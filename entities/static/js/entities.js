@@ -45,7 +45,7 @@ $(document).ready(function () {
     })
 
     // Button click for Cancel Event
-    $(document).on ("click", "#event_cancel", function (e){
+    $(document).on ("click", "#entity_cancel", function (e){
         create_entity_btn = document.getElementById('btn_create_entity');
         entity_form = document.getElementById('entity_form_div')
         entity_form.setAttribute('hidden',true);
@@ -76,12 +76,14 @@ $(document).ready(function () {
                     entity_list.forEach(function(entity_value){
                         entity_field = entity_value['fields']
                         entity_cards_html+=`
-                            <div class="card bg-light mb-2" data-rowid=${entity_field['EntityName']} style="max-width: 18rem;">
+                            <div class="card bg-light mb-2 text-center" data-rowid=${entity_field['EntityName']} style="max-width: 18rem;">
                                 <img class="card-img-top" src="../static/images/entities/${entity_field['ImageFileName']}" >
                                 <div class="card-body">
                                     <h5 class="card-title">${entity_field['EntityName']}</h5>
                                     <p class="card-text">${entity_field['Comments']}</p>
-                                    <a href="#" class="btn btn-outline-success">View</a>
+                                    <div class="card-footer bg-transparent">
+                                        <a href="#" class="btn btn-outline-success">Events</a>
+                                    </div>
                                 </div>
                             </div>
                                             `;
