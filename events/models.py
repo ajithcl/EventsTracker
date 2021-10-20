@@ -8,5 +8,5 @@ class Event(models.Model):
     EventName = models.CharField(max_length=25)
     Comments = models.CharField(max_length=500)
     UserId = models.CharField(max_length=25)
-    EntityId = models.UUIDField()   # Field for storing ID from Entity model
-    # Need to add events links in seperate model
+    # EntityId = models.UUIDField()   # Field for storing ID from Entity model
+    ImageFileName = models.CharField(max_length=50,default='')

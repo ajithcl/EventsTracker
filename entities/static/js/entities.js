@@ -82,7 +82,7 @@ $(document).ready(function () {
                                     <h5 class="card-title">${entity_field['EntityName']}</h5>
                                     <p class="card-text">${entity_field['Comments']}</p>
                                     <div class="card-footer bg-transparent">
-                                        <a href="#" class="btn btn-outline-success">Events</a>
+                                        <a href="../events?entityname=${entity_field['EntityName']}" class="btn btn-outline-success">Events</a>
                                     </div>
                                 </div>
                             </div>

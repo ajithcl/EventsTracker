@@ -14,4 +14,35 @@
 
         this.setAttribute('hidden',true);
     });
+
+    // Input event form submit event
+    $(document).on ("submit", "#event_form", function (e){
+        e.preventDefault();
+        console.log('submitted');
+        $.ajax({
+            url : 'create_event',
+            type : 'POST',
+            datatype : 'JSON',
+            data : new FormData (this),
+            processData : false,
+            contentType : false,
+            success : function(data, status){
+                if (data.result == 'success'){
+                    console.log(data); //TODO
+                }
+            },
+            error : function (xhr, desc, err){
+                console.error(desc); //TODO
+            }
+        })
+    });
+
+
+    // Button click for Cancel button Event
+    $(document).on ("click", "#event_cancel", function (e){
+        create_event_btn = document.getElementById('btn_create_event');
+        event_form = document.getElementById('event_form_div')
+        event_form.setAttribute('hidden',true);
+        create_event_btn.removeAttribute('hidden');
+    })
  });
