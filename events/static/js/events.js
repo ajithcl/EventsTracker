@@ -53,8 +53,13 @@
  // function for loading events list
  function loadEvents(){
     table_body = document.getElementById('table_body');
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    entity_name = urlParams.get('entityname');
+
     $.ajax({
         url : 'get_events',
+        data : {"entity_name" : entity_name},
         type : 'GET',
         datatype : 'JSON',
         success : function (output){
