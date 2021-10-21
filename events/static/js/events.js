@@ -6,6 +6,9 @@
 
  $(document).ready(function () {
 
+    // Load event list
+    loadEvents();
+
     // Button click event for Create new entity
     $(document).on ("click", "#btn_create_event", function(e){
         e.preventDefault();
@@ -46,3 +49,46 @@
         create_event_btn.removeAttribute('hidden');
     })
  });
+
+ // function for loading events list
+ function loadEvents(){
+    table_body = document.getElementById('table_body');
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    entity_name = urlParams.get('entityname');
+
+    $.ajax({
+        url : 'get_events',
+        data : {"entity_name" : entity_name},
+        type : 'GET',
+        datatype : 'JSON',
+        success : function (output){
+            if (output.result == 'success'){
+                event_list = output.data
+                event_list = JSON.parse(event_list)
+                event_table_html='';
+                if (event_list.length > 0){
+                    event_list.forEach(function(event_row){
+                        event_field = event_row['fields']
+                        console.log(event_field)
+                        event_table_html+=`
+                                <tr>
+                                  <td>${event_field["EventDate"]}</td>
+                                  <td>${event_field["EventName"]}</td>
+                                  <td>${event_field["Comments"]}</td>
+                                </tr>
+                        `;
+                    })
+                    table_body.innerHTML=event_table_html;
+                }
+            }
+            else{
+                console.log('error');
+            }
+
+        },
+        error : function (xhr, desc, err){
+        }
+
+    })
+ }

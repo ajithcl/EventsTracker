@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 import datetime
 from .functions import handle_uploaded_file
+from django.core import serializers
 
 
 # Create your views here.
@@ -16,11 +17,11 @@ from .functions import handle_uploaded_file
 def display_events(request):
     entity_name = request.GET.get('entityname')
     user_id = request.session['logged_user']
+    args = {'entity_name': entity_name}
 
-    return render(request, 'events.html')
+    return render(request, 'events.html', args)
 
 
-# TODO
 @csrf_exempt
 def create_event(request):
     if request.method == 'POST':
@@ -28,6 +29,8 @@ def create_event(request):
         input_entity_name = request.POST.get('entity_name', '')
         input_event_name = request.POST.get('event_name', '')
         input_comments = request.POST.get('comments', '')
+
+        print(input_entity_name)
 
         if len(request.FILES) > 0:
             image_file = request.FILES['image_path']
@@ -55,6 +58,16 @@ def create_event(request):
                              'comments': 'Not a POST method'})
 
 
-# TODO
+# TODO : Filter based on entity name
 def get_event_details(request):
-    pass
+    if request.method == 'GET':
+        login_name = request.session['logged_user']
+        entity_name = request.GET.get('entity_name')
+
+        event_list = Event.objects.filter(UserId=login_name, EntityName=entity_name)
+        event_list = serializers.serialize('json', event_list)
+        return JsonResponse({'result': 'success',
+                             'data': event_list})
+    else:
+        return JsonResponse({'result': 'error',
+                             'comments': ' Not a GET method'})
