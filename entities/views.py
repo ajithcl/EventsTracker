@@ -15,7 +15,12 @@ from django.core import serializers
 
 # Create your views here.
 def entities(request):
-    return render(request, 'entities.html')
+    login_name = request.session['logged_user']
+
+    if len(login_name) == 0:
+        return HttpResponse ("Please login")
+    else:
+        return render(request, 'entities.html')
 
 
 @csrf_exempt

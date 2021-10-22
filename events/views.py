@@ -2,7 +2,6 @@
 # EVENTS VIEW          #
 ########################
 
-from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Event
 from django.views.decorators.csrf import csrf_exempt
@@ -16,7 +15,6 @@ from django.core import serializers
 
 def display_events(request):
     entity_name = request.GET.get('entityname')
-    user_id = request.session['logged_user']
     args = {'entity_name': entity_name}
 
     return render(request, 'events.html', args)
@@ -28,9 +26,8 @@ def create_event(request):
         login_name = request.session['logged_user']
         input_entity_name = request.POST.get('entity_name', '')
         input_event_name = request.POST.get('event_name', '')
+        input_event_date = request.POST.get('event_date', datetime.date.today())
         input_comments = request.POST.get('comments', '')
-
-        print(input_entity_name)
 
         if len(request.FILES) > 0:
             image_file = request.FILES['image_path']
@@ -40,7 +37,7 @@ def create_event(request):
         else:
             uploaded_image_name = ''
 
-        event_object = Event.objects.create(EventDate=datetime.date.today(),
+        event_object = Event.objects.create(EventDate=input_event_date,
                                             EntityName=input_entity_name,
                                             EventName=input_event_name,
                                             Comments=input_comments,
@@ -58,7 +55,6 @@ def create_event(request):
                              'comments': 'Not a POST method'})
 
 
-# TODO : Filter based on entity name
 def get_event_details(request):
     if request.method == 'GET':
         login_name = request.session['logged_user']
