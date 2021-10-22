@@ -33,8 +33,27 @@ Python, Django framework, Javascript, HTML 5 with Bootstrap version 5 and Sqlite
 Everyone.
  
  
-<h3> How is it look like? <?h3>
+<h3> How is it look like? </h3>
+
+Login page:
  
- 
- 
-  
+  ![ss1](https://user-images.githubusercontent.com/44773122/138453837-1ebd0388-4b11-44b4-a16b-134ab2ab4c0d.PNG)
+
+Entities page for creating individiual entities to track:
+
+ ![ss2](https://user-images.githubusercontent.com/44773122/138453935-3c8e698a-b2ab-4911-acda-0199f01c8a2c.PNG)
+
+Events page associated with each entity:
+
+  ![ss3](https://user-images.githubusercontent.com/44773122/138454022-2139f733-6810-4b82-ae5a-bc0498454bc9.PNG)
+
+<h3> How to run this? </h3>
+This project is built using Python Django framework and this development version can be executing in Pycharm or command prompt using following batch command:<br>
+python manage.py runserver 9000 <br>
+where 9000 is the port number, and will be running in http://localhost:9000
+<br><br>
+
+
+<i>
+... As always project didn't finished yet. Still thinking about updates...
+</i>
