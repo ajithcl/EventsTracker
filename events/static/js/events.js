@@ -73,9 +73,12 @@
                         console.log(event_field)
                         event_table_html+=`
                                 <tr>
-                                  <td>${event_field["EventDate"]}</td>
-                                  <td>${event_field["EventName"]}</td>
-                                  <td>${event_field["Comments"]}</td>
+                                    <td>${event_field["EventDate"]}</td>
+                                    <td>${event_field["EventName"]}</td>
+                                    <td>${event_field["Comments"]}</td>
+                                    <td>
+                                        <img src="../static/images/${event_field['ImageFileName']}" class="img-thumbnail" style="max-width:25%">
+                                    </td>
                                 </tr>
                         `;
                     })
