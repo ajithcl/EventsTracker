@@ -19,6 +19,12 @@
                             <input type="text" class="form-control form-control-sm" id="name" name="event_name">
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label for="event_date" class="col-sm-3 col-form-label">Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control form-control-sm" id="event_date" name="event_date">
+                        </div>
+                    </div>
                     <div class="form-floating mb-3">
                       <textarea class="form-control" placeholder="Leave a comment here" id="comments" name="comments"></textarea>
                       <label for="comments">Comments</label>
@@ -39,9 +45,9 @@
                         </div>
                     </div>
                 </form>
-                <div class="alert alert-success" role="alert" id="entity_input_alert" hidden>
-                    <span id="entity_input_alert_message">
-                        Record Created!
+                <div class="alert alert-success" role="alert" id="event_input_alert" hidden>
+                    <span id="event_input_alert_message">
+                        Event Created!
                     </span>
                 </div>
             </div>
@@ -54,7 +60,13 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <table class="table">
+                <table class="table" style="width: 100%">
+                    <colgroup>
+                        <col span="1" style="width:10%;">
+                        <col span="1" style="width:20%;">
+                        <col span="1" style="width:30%;">
+                        <col span="1" style="width:40%;">
+                    </colgroup>
                     <tbody id="table_body">
 
                     </tbody>

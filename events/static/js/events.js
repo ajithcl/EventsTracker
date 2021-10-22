@@ -21,7 +21,7 @@
     // Input event form submit event
     $(document).on ("submit", "#event_form", function (e){
         e.preventDefault();
-        console.log('submitted');
+        event_form_message = document.getElementById('event_input_alert');
         $.ajax({
             url : 'create_event',
             type : 'POST',
@@ -31,11 +31,12 @@
             contentType : false,
             success : function(data, status){
                 if (data.result == 'success'){
-                    console.log(data); //TODO
+                    event_form_message.removeAttribute('hidden');
+                    setTimeout (clearMessage, 4000);
                 }
             },
             error : function (xhr, desc, err){
-                console.error(desc); //TODO
+                alert(desc);
             }
         })
     });
@@ -70,12 +71,15 @@
                 if (event_list.length > 0){
                     event_list.forEach(function(event_row){
                         event_field = event_row['fields']
-                        console.log(event_field)
+
                         event_table_html+=`
                                 <tr>
-                                  <td>${event_field["EventDate"]}</td>
-                                  <td>${event_field["EventName"]}</td>
-                                  <td>${event_field["Comments"]}</td>
+                                    <td>${event_field["EventDate"]}</td>
+                                    <td>${event_field["EventName"]}</td>
+                                    <td>${event_field["Comments"]}</td>
+                                    <td>
+                                        <img src="../static/images/${event_field['ImageFileName']}" class="img-thumbnail" style="max-width:25%">
+                                    </td>
                                 </tr>
                         `;
                     })
@@ -83,12 +87,17 @@
                 }
             }
             else{
-                console.log('error');
+                alert('Error while accessing the events.');
             }
-
         },
         error : function (xhr, desc, err){
+            alert('Error while accessing the events..');
         }
-
     })
  }
+
+ // Function for clearing the alert message after submitting the input data
+ function clearMessage(){
+    event_form_message = document.getElementById('event_input_alert');
+    event_form_message.setAttribute('hidden', true);
+    }
