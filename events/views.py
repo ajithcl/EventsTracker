@@ -60,7 +60,7 @@ def get_event_details(request):
         login_name = request.session['logged_user']
         entity_name = request.GET.get('entity_name')
 
-        event_list = Event.objects.filter(UserId=login_name, EntityName=entity_name)
+        event_list = Event.objects.filter(UserId=login_name, EntityName=entity_name).order_by('-EventDate')
         event_list = serializers.serialize('json', event_list)
         return JsonResponse({'result': 'success',
                              'data': event_list})
