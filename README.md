@@ -13,6 +13,11 @@ Entity can be a person or things etc.
     <th> Changes</th>
     <th> Comments</th>
   </tr>
+   <tr>
+    <td> 03 May 2022</td>
+    <td> Blank image thumbnails corrected </td>
+    <td>When Image is not present it was showing non image available icon. Fixed this.</td>
+  </tr>
   <tr>
     <td> 22 Oct 2021</td>
     <td> initial working version </td>
