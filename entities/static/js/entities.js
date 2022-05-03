@@ -75,9 +75,16 @@ $(document).ready(function () {
                 if (entity_list.length > 0){
                     entity_list.forEach(function(entity_value){
                         entity_field = entity_value['fields']
+                        image_file_name = entity_field['ImageFileName']
+                        if (image_file_name.length != 0){
+                            image_file_name = "../static/images/entities/" + image_file_name;
+                        }
+                        else{
+                            image_file_name="";
+                        }
                         entity_cards_html+=`
                             <div class="card bg-light mb-2 text-center" data-rowid=${entity_field['EntityName']} style="max-width: 18rem;">
-                                <img class="card-img-top" src="../static/images/entities/${entity_field['ImageFileName']}" >
+                                <img class="card-img-top" src="${image_file_name}" >
                                 <div class="card-body">
                                     <h5 class="card-title">${entity_field['EntityName']}</h5>
                                     <p class="card-text">${entity_field['Comments']}</p>
