@@ -71,14 +71,17 @@
                 if (event_list.length > 0){
                     event_list.forEach(function(event_row){
                         event_field = event_row['fields']
-
+                        image_file_name = event_field['ImageFileName'];
+                        if (image_file_name.length != 0){
+                            image_file_name = "../static/images/" + image_file_name
+                        }
                         event_table_html+=`
                                 <tr>
                                     <td>${event_field["EventDate"]}</td>
                                     <td>${event_field["EventName"]}</td>
                                     <td>${event_field["Comments"]}</td>
                                     <td>
-                                        <img src="../static/images/${event_field['ImageFileName']}" class="img-thumbnail" style="max-width:25%">
+                                        <img src="${image_file_name}" class="img-thumbnail" style="max-width:25%">
                                     </td>
                                 </tr>
                         `;
